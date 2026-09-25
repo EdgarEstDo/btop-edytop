@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# edytop · lanzador de btop con panel de GPU Intel (driver xe)
+#
+# Lanza el binario de este fork con su PROPIA configuración, sin tocar la de btop:
+#   EDYTOP_HOME  directorio con bin/btop y edytop.conf.example (por defecto: el de este script)
+#   EDYTOP_BIN   binario concreto a ejecutar (tiene prioridad sobre EDYTOP_HOME)
+#
+# Uso: edytop [opciones de btop]
+set -euo pipefail
+
+SELF="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+EDYTOP_HOME="${EDYTOP_HOME:-$SELF}"
+
+BIN="${EDYTOP_BIN:-}"
+if [ -z "$BIN" ]; then
+	for cand in "$EDYTOP_HOME/bin/btop" "$HOME/.local/share/edytop/bin/btop" "$HOME/development/edytop/btop/bin/btop"; do
+		if [ -x "$cand" ]; then BIN="$cand"; break; fi
+	done
+fi
+if [ -z "$BIN" ] || [ ! -x "$BIN" ]; then
+	echo "edytop: no encuentro el binario compilado. Compílalo con edytop/rebuild.sh o define EDYTOP_BIN." >&2
+	exit 1
+fi
+
+CFG="${XDG_CONFIG_HOME:-$HOME/.config}/edytop"
+mkdir -p "$CFG/btop"
+if [ ! -f "$CFG/btop/btop.conf" ] && [ -f "$EDYTOP_HOME/edytop.conf.example" ]; then
+	cp "$EDYTOP_HOME/edytop.conf.example" "$CFG/btop/btop.conf"
+fi
+
+export XDG_CONFIG_HOME="$CFG"
+exec "$BIN" "$@"

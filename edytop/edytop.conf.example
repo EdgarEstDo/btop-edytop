@@ -1,0 +1,23 @@
+# edytop · configuración de ejemplo
+# Se copia a ~/.config/edytop/btop/btop.conf en el primer arranque.
+# btop rellena con sus valores por defecto las claves que no aparezcan aquí.
+# Documentación completa de claves: `btop --help` y el README de btop.
+
+# --- Layout: CPU, memoria, red, procesos y la caja de GPU ---------------------
+shown_boxes = "cpu mem net proc gpu0"
+
+# --- Uso/temperatura de la GPU dentro de la caja de CPU -----------------------
+show_gpu_info = "On"
+
+# --- Gráfica del panel de GPU ("default", "braille", "block" o "tty") --------
+graph_symbol_gpu = "default"
+
+# --- Fabricantes a mostrar ("nvidia amd intel apple") ------------------------
+shown_gpus = "nvidia amd intel apple"
+
+# --- Disco: basta con el sistema de ficheros de trabajo ----------------------
+disks_filter = "/home"
+
+# --- Refresco (ms) y nivel de registro ---------------------------------------
+update_ms = 1000
+log_level = "WARNING"

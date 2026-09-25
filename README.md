@@ -22,6 +22,11 @@
 [![Continuous Build NetBSD](https://github.com/aristocratos/btop/actions/workflows/continuous-build-netbsd.yml/badge.svg)](https://github.com/aristocratos/btop/actions/workflows/continuous-build-netbsd.yml)
 [![Continuous Build OpenBSD](https://github.com/aristocratos/btop/actions/workflows/continuous-build-openbsd.yml/badge.svg)](https://github.com/aristocratos/btop/actions/workflows/continuous-build-openbsd.yml)
 
+> **Fork notice:** this repository is a fork of *btop* that adds an **Intel GPU (`xe` kernel driver)
+> backend** and ships the `edytop` launcher, so CPU + GPU metrics share one screen. Base: btop v1.4.7
+> plus [PR #1457](https://github.com/aristocratos/btop/pull/1457). See [`edytop/README.md`](edytop/README.md).
+> Upstream documentation follows.
+
 ## Index
 
 * [News](#news)
