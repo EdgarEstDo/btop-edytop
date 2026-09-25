@@ -81,6 +81,26 @@ directorio con las variables `EDYTOP_HOME` y `EDYTOP_BIN`.
 métrica no se puede mostrar; el panel PMU requiere privilegios; en equipos con varias GPUs (p. ej.
 integrada + dedicada) cada una se expone por separado.
 
+### Precisión del dato de uso %
+
+Por defecto el uso se calcula **sin privilegios** (deltas de `fdinfo` y, como respaldo, `gtidle`),
+que es la misma familia de datos que usan `gputop` y `nvtop`. Medido con carga real en una Arc B580
+frente a `gputop`: la diferencia ronda los **5 puntos porcentuales** en carga alta (~94 % vs ~99 %) y
+el perfil de carga se reproduce fielmente, así que es suficiente para monitorizar de un vistazo.
+
+Para quien quiera el dato exacto por motor, el driver expone su PMU (`engine-active-ticks` /
+`engine-total-ticks`). Basta con conceder `CAP_PERFMON` al binario **una sola vez**:
+
+```bash
+sudo install -o root -g root -m755 bin/btop /usr/local/bin/btop-xe
+sudo setcap cap_perfmon+ep /usr/local/bin/btop-xe
+EDYTOP_BIN=/usr/local/bin/btop-xe edytop
+```
+
+(matiz: si el sistema de ficheros está montado con `nosuid`, las capacidades no se aplican y habría
+que usar `sudo`). Sin ese permiso btop sigue funcionando igual, solo que con la fuente sin
+privilegios.
+
 ## Estado y relación con upstream
 
 * Base: **btop v1.4.7** + [PR #1457](https://github.com/aristocratos/btop/pull/1457)
