@@ -1,3 +1,16 @@
+> ## 🛠️ Personal fork by [EdgarEstDo](https://github.com/EdgarEstDo)
+>
+> ⚠️ **This is NOT the official btop repository.** It is a personal fork of
+> [aristocratos/btop](https://github.com/aristocratos/btop) that adds **Intel GPU support**
+> (kernel driver `xe`) and ships the **`edytop`** launcher, so CPU + GPU metrics share one screen.
+> All credit for the original project belongs to **aristocratos** and contributors (GPL-3.0).
+>
+> 🔧 Work branch: [`edytop-xe`](https://github.com/EdgarEstDo/btop-edytop/tree/edytop-xe)
+> &nbsp;·&nbsp; 📄 Details: [`edytop/README.md`](https://github.com/EdgarEstDo/btop-edytop/blob/edytop-xe/edytop/README.md)
+>
+> ---
+
+
 # ![btop++](Img/logo.png)
 
 <a href="https://repology.org/project/btop/versions">
